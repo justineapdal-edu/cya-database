@@ -1,14 +1,14 @@
 import { createBrowserClient } from '@supabase/ssr';
 
-const supabaseUrl = process.env.PUBLIC_SUPABASE_URL;
-const supabaseKey = process.env.PUBLIC_SUPABASE_ANON_KEY;
+export const createClient = () => {
+    const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+    const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
 
-if (!supabaseUrl || !supabaseKey) {
-    throw new Error("Missing Supabase environment variables. Check your .env.local file.");
-}
+    if (!supabaseUrl || !supabaseKey) {
+        throw new Error(
+            'Missing NEXT_PUBLIC_SUPABASE_URL or NEXT_PUBLIC_SUPABASE_ANON_KEY in .env.local.'
+        );
+    }
 
-export const createClient = () =>
-    createBrowserClient(
-        supabaseUrl,
-        supabaseKey
-    );
+    return createBrowserClient(supabaseUrl, supabaseKey);
+};
