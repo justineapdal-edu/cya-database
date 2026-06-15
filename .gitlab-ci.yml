@@ -1,0 +1,35 @@
+default:
+  image: node:20-alpine
+
+stages:
+  - test
+  - deploy
+
+# 1. Always run tests first
+run_tests:
+  stage: test
+  script:
+    - npm ci
+    - npm run lint
+
+# 2. Deploy to Preview Environment (Runs on any branch except main)
+deploy_preview:
+  stage: deploy
+  rules:
+    - if: $CI_COMMIT_BRANCH != "main"
+  script:
+    - npm install --global vercel
+    - vercel pull --yes --environment=preview --token=$VERCEL_TOKEN
+    - vercel build --token=$VERCEL_TOKEN
+    - vercel deploy --prebuilt --token=$VERCEL_TOKEN
+
+# 3. Deploy to Production Environment (Only runs when code hits main)
+deploy_production:
+  stage: deploy
+  rules:
+    - if: $CI_COMMIT_BRANCH == "main"
+  script:
+    - npm install --global vercel
+    - vercel pull --yes --environment=production --token=$VERCEL_TOKEN
+    - vercel build --prod --token=$VERCEL_TOKEN
+    - vercel deploy --prebuilt --prod --token=$VERCEL_TOKEN
