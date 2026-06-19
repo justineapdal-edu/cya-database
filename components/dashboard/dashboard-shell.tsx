@@ -1,16 +1,17 @@
 'use client';
 
-import { Home, Settings, User } from 'lucide-react';
+import { Database, Home, Settings, User } from 'lucide-react';
 
 import { SignOutButton } from '@/components/auth/sign-out-button';
 import { Button } from '@/components/ui/button';
 import { SidebarContent, SidebarProvider, SidebarTrigger } from '@/components/sidebar';
 import type { NavItem } from '@/components/sidebar';
 
-const navigationItems: NavItem[] = [
+const navItems: NavItem[] = [
   { href: '/dashboard', label: 'Home', icon: Home },
-  { href: '/dashboard/profile', label: 'Profile', icon: User },
-  { href: '/dashboard/settings', label: 'Settings', icon: Settings },
+  { href: '/database', label: 'Database', icon: Database },
+  { href: '/profile', label: 'Profile', icon: User },
+  { href: '/settings', label: 'Settings', icon: Settings },
 ];
 
 export function DashboardShell({ children }: { children: React.ReactNode }) {
@@ -18,7 +19,7 @@ export function DashboardShell({ children }: { children: React.ReactNode }) {
     <SidebarProvider>
       <div className="min-h-screen bg-[#f7f8fa]">
         <SidebarContent
-          items={navigationItems}
+          items={navItems}
           brand={{ label: 'CYA Database', href: '/dashboard' }}
           footer={
             <Button
