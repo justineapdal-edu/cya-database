@@ -1,10 +1,10 @@
 import { DashboardShell } from '@/components/dashboard/dashboard-shell';
-import { DatabaseContent } from '@/components/database/database-content';
+import { DatabaseDashboard } from '@/components/database/database-dashboard';
 
 export default function DatabasePage() {
   return (
     <DashboardShell>
-      <DatabaseContent />
+      <DatabaseDashboard />
     </DashboardShell>
   );
 }
