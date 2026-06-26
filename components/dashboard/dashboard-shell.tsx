@@ -1,6 +1,6 @@
 'use client';
 
-import { Database, Home, Settings, User } from 'lucide-react';
+import { BookUser, Database, Home, Settings, User } from 'lucide-react';
 
 import { SignOutButton } from '@/components/auth/sign-out-button';
 import { Button } from '@/components/ui/button';
@@ -10,6 +10,7 @@ import type { NavItem } from '@/components/sidebar';
 const navItems: NavItem[] = [
   { href: '/dashboard', label: 'Home', icon: Home },
   { href: '/database', label: 'Database', icon: Database },
+  { href: '/cya-database', label: 'CYA Database', icon: BookUser },
   { href: '/profile', label: 'Profile', icon: User },
   { href: '/settings', label: 'Settings', icon: Settings },
 ];
